@@ -1,0 +1,89 @@
+
+PotionAmour.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Calque 9
+  rotate: false
+  xy: 2, 26
+  size: 1000, 992
+  orig: 1000, 992
+  offset: 0, 0
+  index: -1
+coeur4
+  rotate: true
+  xy: 2, 2
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+coeur7
+  rotate: true
+  xy: 33, 2
+  size: 22, 29
+  orig: 22, 29
+  offset: 0, 0
+  index: -1
+
+PotionAmour2.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Light
+  rotate: true
+  xy: 2, 3
+  size: 28, 70
+  orig: 28, 70
+  offset: 0, 0
+  index: -1
+coeur1
+  rotate: true
+  xy: 74, 2
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+coeur6
+  rotate: true
+  xy: 74, 2
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+coeur2
+  rotate: true
+  xy: 111, 2
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+coeur5
+  rotate: true
+  xy: 111, 2
+  size: 29, 35
+  orig: 29, 35
+  offset: 0, 0
+  index: -1
+coeur3
+  rotate: false
+  xy: 150, 58
+  size: 40, 63
+  orig: 40, 63
+  offset: 0, 0
+  index: -1
+coeur8
+  rotate: false
+  xy: 192, 58
+  size: 40, 63
+  orig: 40, 63
+  offset: 0, 0
+  index: -1
+light2
+  rotate: true
+  xy: 2, 33
+  size: 88, 146
+  orig: 88, 146
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,104 @@
+
+marmit.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bulle
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle 3
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle1
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle10
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle2
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle4
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle5
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle6
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle7
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle8
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+bulle9
+  rotate: false
+  xy: 2, 2
+  size: 70, 50
+  orig: 70, 50
+  offset: 0, 0
+  index: -1
+liquide
+  rotate: false
+  xy: 2, 54
+  size: 574, 351
+  orig: 574, 351
+  offset: 0, 0
+  index: -1
+marmire
+  rotate: false
+  xy: 2, 407
+  size: 631, 552
+  orig: 631, 552
+  offset: 0, 0
+  index: -1
+pieds
+  rotate: true
+  xy: 635, 326
+  size: 633, 245
+  orig: 633, 245
+  offset: 0, 0
+  index: -1

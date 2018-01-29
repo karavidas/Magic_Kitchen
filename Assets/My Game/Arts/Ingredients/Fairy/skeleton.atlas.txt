@@ -1,0 +1,13 @@
+
+skeleton.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Calque 8 copie - Copie
+  rotate: false
+  xy: 2, 2
+  size: 298, 148
+  orig: 298, 148
+  offset: 0, 0
+  index: -1

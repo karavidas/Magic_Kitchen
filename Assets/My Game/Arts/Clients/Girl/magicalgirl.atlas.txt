@@ -1,0 +1,164 @@
+
+magicalgirl.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bouche sad
+  rotate: false
+  xy: 2, 2
+  size: 38, 10
+  orig: 38, 10
+  offset: 0, 0
+  index: -1
+eyesshut
+  rotate: false
+  xy: 2, 14
+  size: 1000, 1000
+  orig: 1000, 1000
+  offset: 0, 0
+  index: -1
+
+magicalgirl2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bouchebase
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1000, 1000
+  offset: 0, 0
+  index: -1
+
+magicalgirl3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yeuxtriste
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1000, 1000
+  offset: 0, 0
+  index: -1
+
+magicalgirl4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baguette magique
+  rotate: false
+  xy: 479, 456
+  size: 46, 130
+  orig: 46, 130
+  offset: 0, 0
+  index: -1
+bouche open 2
+  rotate: true
+  xy: 565, 595
+  size: 71, 59
+  orig: 71, 59
+  offset: 0, 0
+  index: -1
+bras1
+  rotate: true
+  xy: 776, 857
+  size: 75, 82
+  orig: 75, 82
+  offset: 0, 0
+  index: -1
+bras2
+  rotate: false
+  xy: 361, 376
+  size: 76, 76
+  orig: 76, 76
+  offset: 0, 0
+  index: -1
+chausette
+  rotate: false
+  xy: 882, 949
+  size: 115, 71
+  orig: 115, 71
+  offset: 0, 0
+  index: -1
+cheveux
+  rotate: false
+  xy: 2, 133
+  size: 322, 262
+  orig: 322, 262
+  offset: 0, 0
+  index: -1
+couette 1
+  rotate: false
+  xy: 2, 397
+  size: 178, 623
+  orig: 178, 623
+  offset: 0, 0
+  index: -1
+couette 2
+  rotate: false
+  xy: 182, 397
+  size: 177, 623
+  orig: 177, 623
+  offset: 0, 0
+  index: -1
+couronne
+  rotate: true
+  xy: 565, 668
+  size: 153, 44
+  orig: 153, 44
+  offset: 0, 0
+  index: -1
+eyes
+  rotate: false
+  xy: 633, 934
+  size: 247, 86
+  orig: 247, 86
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 361, 823
+  size: 270, 197
+  orig: 270, 197
+  offset: 0, 0
+  index: -1
+jambes
+  rotate: false
+  xy: 361, 454
+  size: 116, 132
+  orig: 116, 132
+  offset: 0, 0
+  index: -1
+main 1
+  rotate: true
+  xy: 633, 862
+  size: 70, 141
+  orig: 70, 141
+  offset: 0, 0
+  index: -1
+main 2
+  rotate: false
+  xy: 2, 2
+  size: 309, 129
+  orig: 309, 129
+  offset: 0, 0
+  index: -1
+robe
+  rotate: false
+  xy: 361, 588
+  size: 161, 233
+  orig: 161, 233
+  offset: 0, 0
+  index: -1
+yeux sad
+  rotate: true
+  xy: 524, 589
+  size: 232, 39
+  orig: 232, 39
+  offset: 0, 0
+  index: -1

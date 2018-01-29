@@ -1,0 +1,62 @@
+
+nerdboi.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bidon
+  rotate: false
+  xy: 321, 220
+  size: 399, 278
+  orig: 399, 278
+  offset: 0, 0
+  index: -1
+bras 1
+  rotate: false
+  xy: 2, 133
+  size: 317, 365
+  orig: 317, 365
+  offset: 0, 0
+  index: -1
+bras 2
+  rotate: true
+  xy: 436, 6
+  size: 212, 210
+  orig: 212, 210
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 722, 146
+  size: 261, 352
+  orig: 261, 352
+  offset: 0, 0
+  index: -1
+lunette sad
+  rotate: false
+  xy: 2, 33
+  size: 215, 98
+  orig: 215, 98
+  offset: 0, 0
+  index: -1
+lunette smile
+  rotate: false
+  xy: 219, 33
+  size: 215, 98
+  orig: 215, 98
+  offset: 0, 0
+  index: -1
+sad
+  rotate: false
+  xy: 107, 13
+  size: 104, 18
+  orig: 104, 18
+  offset: 0, 0
+  index: -1
+smile
+  rotate: false
+  xy: 2, 2
+  size: 103, 29
+  orig: 103, 29
+  offset: 0, 0
+  index: -1

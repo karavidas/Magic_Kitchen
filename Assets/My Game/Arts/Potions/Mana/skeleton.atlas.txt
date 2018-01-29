@@ -1,0 +1,39 @@
+
+skeleton.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+light
+  rotate: false
+  xy: 2, 2
+  size: 837, 782
+  orig: 837, 782
+  offset: 0, 0
+  index: -1
+
+skeleton2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+liquid
+  rotate: false
+  xy: 2, 2
+  size: 724, 847
+  orig: 724, 847
+  offset: 0, 0
+  index: -1
+
+skeleton3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Potion
+  rotate: false
+  xy: 2, 2
+  size: 566, 734
+  orig: 566, 734
+  offset: 0, 0
+  index: -1
