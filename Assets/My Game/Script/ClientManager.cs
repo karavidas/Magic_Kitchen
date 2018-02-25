@@ -64,6 +64,8 @@ public class ClientManager : MonoBehaviour
     IEnumerator PlaySound(){
         while (true)
         {
+            yield return new WaitForSeconds(Random.Range(10f, 50f));
+
             // Play Happy sound
             if (SpawnManager.instance.SpawnPointsTab[index].progress.value > SpawnManager.instance.SpawnPointsTab[index].progress.maxValue/2)
             {
@@ -79,7 +81,6 @@ public class ClientManager : MonoBehaviour
 
             _AS.Play();
 
-            yield return new WaitForSeconds(Random.Range(10f, 50f));
         }
     }
 
