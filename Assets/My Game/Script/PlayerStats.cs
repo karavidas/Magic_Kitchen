@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour {
 
 	void Update() {
 
-		UIManager.instance.goldText.text = "Gold: " + Gold;
+		UIManager.instance.goldText.text = "" + Gold;
 
 		UIManager.instance.ModifyLife (lifePoints);
 		if (lifePoints <= 0) {
