@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject[] heartTab;
 	public GameObject grimoire;
 	public Text goldText;
+    public Image goldImage;
 
 	[Space]
 
@@ -32,7 +33,11 @@ public class UIManager : MonoBehaviour {
 		if (goldText != null ) {
 			goldText.gameObject.SetActive (true);
 		}
-		if (playAgain != null) {
+        if (goldImage != null)
+        {
+            goldImage.gameObject.SetActive(true);
+        }
+        if (playAgain != null) {
 			playAgain.gameObject.SetActive (false);
 		}
 		if (quitGame != null) {
@@ -50,7 +55,11 @@ public class UIManager : MonoBehaviour {
 		if (goldText != null ) {
 			goldText.gameObject.SetActive (false);
 		}
-		if (playAgain != null) {
+        if (goldImage != null)
+        {
+            goldImage.gameObject.SetActive(false);
+        }
+        if (playAgain != null) {
 			playAgain.gameObject.SetActive (true);
 		}
 		if (quitGame != null) {
