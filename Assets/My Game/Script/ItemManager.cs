@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine;
+using Spine.Unity;
 
 public class ItemManager : MonoBehaviour {
 
@@ -30,10 +32,27 @@ public class ItemManager : MonoBehaviour {
 
         dragging = true;
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-	}
+        if (this.gameObject.GetComponent<SkeletonAnimation>())
+        {
+            this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
+        }
+        else
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Draged";
+        }
+    }
 
     void OnMouseUp() {
         dragging = false;
+        if (this.gameObject.GetComponent<SkeletonAnimation>())
+        {
+            this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Ingredients";
+        }
+        else
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Ingredients";
+        }
+
 
         for (int i = 0; i < kitles.Length; i++)
         {

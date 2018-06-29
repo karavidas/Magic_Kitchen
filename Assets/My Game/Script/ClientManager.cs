@@ -54,6 +54,7 @@ public class ClientManager : MonoBehaviour
         else
         {
             AngryAnimation();
+            PlayerStats.instance.Gold -= 3;
         }
         
     }

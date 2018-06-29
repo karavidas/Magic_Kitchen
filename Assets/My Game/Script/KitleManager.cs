@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Spine;
+using Spine.Unity;
 
 public class KitleManager : MonoBehaviour {
 
@@ -13,15 +15,20 @@ public class KitleManager : MonoBehaviour {
 	public Slider progressBar;
 	public Sprite backgroundSlot;
 	public bool isCompleted = false;
+    public Canvas canvas;
 
 	// Private Variables
 	private GameObject _potion;
+    private TrashManager[] trashes;
     private AudioSource _AM;
-	private int _compteur;
+    private Vector3 startPosition;
 	private bool isCooking = false;
+    private bool dragging = false;
+    private float distance;
+	private int _compteur;
 
-	// Initialize Components & Physics
-	void Awake() {
+    // Initialize Components & Physics
+    void Awake() {
 		if (progressBar != null) {
 			progressBar.gameObject.SetActive (false);
 		}
@@ -29,6 +36,8 @@ public class KitleManager : MonoBehaviour {
 
     void Start(){
         _AM = GetComponent<AudioSource>();
+        startPosition = transform.position;
+        trashes = FindObjectsOfType<TrashManager>();
     }
 
 	// Update Loop 
@@ -43,7 +52,43 @@ public class KitleManager : MonoBehaviour {
 				slots [i].gameObject.SetActive (false);
 			}
 		}
-	}
+
+        if (dragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 rayPoint = ray.GetPoint(distance);
+            transform.position = rayPoint;
+        }
+    }
+
+    void OnMouseDown()
+    {
+        if (!isCooking)
+        {
+            dragging = true;
+            this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
+            canvas.gameObject.SetActive(false);
+            distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        }
+    }
+
+    void OnMouseUp()
+    {
+        dragging = false;
+        canvas.gameObject.SetActive(true);
+        this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Default";
+
+        for (int i = 0; i < trashes.Length; i++)
+        {
+            if (transform.position.x < trashes[i].transform.position.x + 1.5 && transform.position.x > trashes[i].transform.position.x - 1.5 && transform.position.y > trashes[i].transform.position.y - 2 && transform.position.y < trashes[i].transform.position.y + 2)
+            {
+                ResetKitle();
+                break;
+            }
+        }
+
+        transform.position = startPosition;
+    }
 
     public void AddingElement(GameObject item) {
         if (!isCooking)
@@ -56,6 +101,7 @@ public class KitleManager : MonoBehaviour {
                     slots[i].GetComponent<Image>().sprite = item.gameObject.GetComponent<SpriteRenderer>().sprite;
                     ingredients[i] = item;
                     RestartProgress();
+                    StartCoroutine(InProgress());
                     break;
                 }
             }
@@ -69,7 +115,6 @@ public class KitleManager : MonoBehaviour {
         _AM.Play();
 		progressBar.gameObject.SetActive (true);
 		progressBar.value = progressBar.maxValue;
-		StartCoroutine (InProgress());
 	}
 		
 	// Progress bar statut
@@ -100,6 +145,7 @@ public class KitleManager : MonoBehaviour {
 		for (int i = 0; i < MainPotionManager.instance.PotionTab.Length; i++) {
 			if (ingredients.SequenceEqual (MainPotionManager.instance.PotionTab[i].ingredients)) {
 				_potion = MainPotionManager.instance.PotionTab[i].potion;
+                break;
 			}
 		}
 		// Failed Potion
@@ -111,17 +157,8 @@ public class KitleManager : MonoBehaviour {
 		Vector3 targetPos = new Vector3 (spawnPotion.transform.position.x, spawnPotion.transform.position.y, 0);
 		Instantiate (_potion, targetPos, Quaternion.Euler (Vector3.zero));
 
-		// Reset Ingredients Tab
-		for ( int i = 0; i < ingredients.Length; i++)
-		{
-			ingredients[i] = null;
-		}
-
-		// Reset Background slots
-		for ( int i = 0; i < slots.Length; i++)
-		{
-			slots [i].GetComponent<Image> ().sprite = backgroundSlot;
-		}
+        // Reset
+        ResetKitle();
 
 		// Reset Bool isCompleted
 		isCompleted = false;
@@ -140,6 +177,21 @@ public class KitleManager : MonoBehaviour {
 
 		if (_compteur == ingredients.Length) {
 			isCompleted = true;
-		} 
-	}
+		}
+    }
+
+    void ResetKitle() {
+
+        // Reset Ingredients Tab
+        for (int i = 0; i<ingredients.Length; i++)
+		{
+			ingredients[i] = null;
+		}
+
+        // Reset Background slots
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].GetComponent<Image>().sprite = backgroundSlot;
+        }
+    }
 }
