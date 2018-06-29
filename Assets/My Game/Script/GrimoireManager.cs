@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GrimoireManager : MonoBehaviour {
 
-
-
 	// Use this for initialization
 	void Awake () {
 		Close ();

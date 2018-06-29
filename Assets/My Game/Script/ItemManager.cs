@@ -5,53 +5,45 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour {
 
 	public GameObject ingredient;
-	private IngredientDragged _id;
 
-	void OnMouseDown() {
-		// Ingredient GameObject
-		if (PlayerStats.instance.CurrentIngredient == null) {
-			PlayerStats.instance.CurrentIngredient = ingredient;
-			TakeIngredient();
-		} else {
-			_id = FindObjectOfType<IngredientDragged> ();
-			if (PlayerStats.instance.CurrentIngredient.tag != gameObject.tag) {
+    private KitleManager[] kitles;
+    private bool dragging = false;
+    private float distance;
+    private Vector3 startPosition;
 
-				Destroy (_id.gameObject);
-				TakeIngredient ();
-			} else {
+    void Start() {
+        startPosition = transform.position;
 
-				Destroy (_id.gameObject);
-				PlayerStats.instance.CurrentIngredient = null;
-			}
+        kitles = FindObjectsOfType<KitleManager>();
+    }
 
-		}
+    void Update() {
+        if (dragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 rayPoint = ray.GetPoint(distance);
+            transform.position = rayPoint;
+        }
+    }
 
+    void OnMouseDown() {
 
-		/*// Ingredient GameObject
-		if (PlayerStats.instance.CurrentIngredient != null) {
-
-			_id = FindObjectOfType<IngredientDragged> ();
-
-			if (PlayerStats.instance.currentIngredientDragged.tag != gameObject.tag) {
-
-				Destroy (_id.gameObject);
-				TakeIngredient ();
-			} else {
-				
-				Destroy (_id.gameObject);
-				PlayerStats.instance.currentIngredientDragged = null;
-			}
-
-		} else {
-			
-			TakeIngredient();
-		}*/
-
+        dragging = true;
+        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 	}
 
-	void TakeIngredient(){
-		//PlayerStats.instance.currentIngredientDragged = ingredient.gameObject;
-		Vector3 _targetPos = new Vector3 (transform.position.x, transform.position.y, 0f);
-		Instantiate (ingredient, _targetPos, Quaternion.Euler (Vector3.zero));
-	}
+    void OnMouseUp() {
+        dragging = false;
+
+        for (int i = 0; i < kitles.Length; i++)
+        {
+            if (transform.position.x < kitles[i].transform.position.x + 1.5 && transform.position.x > kitles[i].transform.position.x - 1.5 && transform.position.y > kitles[i].transform.position.y - 2 && transform.position.y < kitles[i].transform.position.y + 2)
+            {
+                kitles[i].AddingElement(ingredient);
+                break;
+            }
+        }
+
+        transform.position = startPosition;
+    }
 }

@@ -42,23 +42,20 @@ public class ClientManager : MonoBehaviour
 
     }
 
-    // If the potion is the good one
-    void OnMouseDown()
-    {
-        if (PlayerStats.instance.currentPotion != null)
-        {
-            if (potion.tag == PlayerStats.instance.currentPotion.tag)
-            {
-                PlayerStats.instance.Gold += 10;
-                Destroy(PlayerStats.instance.currentPotion.gameObject);
-                SpawnManager.instance.DeativateClient(index);
+    public void AddingPotion(GameObject potionGiven) {
 
-            }
-            else
-            {
-                AngryAnimation();
-            }
+        if (potion.tag == potionGiven.tag)
+        {
+            PlayerStats.instance.Gold += 10;
+            Destroy(potionGiven);
+            SpawnManager.instance.DeativateClient(index);
+
         }
+        else
+        {
+            AngryAnimation();
+        }
+        
     }
 
     IEnumerator PlaySound(){

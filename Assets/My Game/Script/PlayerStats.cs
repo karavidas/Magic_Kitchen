@@ -13,23 +13,12 @@ public class PlayerStats : MonoBehaviour {
 	// Private Variables
 	[SerializeField]
 	private int _gold;
-	[SerializeField]
-	private GameObject _currentIngredient;
-
-	public GameObject currentPotion;
 
 	public int Gold
 	{
 		get { return _gold; }
 		set { _gold = value; }
 	}
-
-	public GameObject CurrentIngredient
-	{
-		get { return _currentIngredient; }
-		set { _currentIngredient = value; }
-	}
-		
 
 	void Awake() {
 		instance = this;
@@ -44,5 +33,4 @@ public class PlayerStats : MonoBehaviour {
 			GameManager.instance.gameState = GameManager.gameStates.GameOver;
 		}
 	}
-		
 }
