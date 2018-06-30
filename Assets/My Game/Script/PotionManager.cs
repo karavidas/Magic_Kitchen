@@ -34,17 +34,19 @@ public class PotionManager : MonoBehaviour {
 
     void OnMouseDown()
     {
-
-        dragging = true;
-        if (this.gameObject.GetComponent<SkeletonAnimation>())
+        if (GameManager.instance.gameState == GameManager.gameStates.Playing)
         {
-            this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
+            dragging = true;
+            if (this.gameObject.GetComponent<SkeletonAnimation>())
+            {
+                this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Draged";
+            }
+            distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         }
-        else
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Draged";
-        }
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
     }
 
     void OnMouseUp()

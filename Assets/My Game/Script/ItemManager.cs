@@ -30,15 +30,18 @@ public class ItemManager : MonoBehaviour {
 
     void OnMouseDown() {
 
-        dragging = true;
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        if (this.gameObject.GetComponent<SkeletonAnimation>())
+        if (GameManager.instance.gameState == GameManager.gameStates.Playing)
         {
-            this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
-        }
-        else
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Draged";
+            dragging = true;
+            distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            if (this.gameObject.GetComponent<SkeletonAnimation>())
+            {
+                this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Draged";
+            }
         }
     }
 

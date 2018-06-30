@@ -12,15 +12,15 @@ public class SpawnManager : MonoBehaviour {
 	[System.Serializable]
 	public struct SpawnPoints
 	{
-		public GameObject spawnPoint;
-		public GameObject demand;
+		public ClientManager client;
+		public Transform spawnPoint;
+		public SpriteRenderer demand;
 		public Slider progress;
-		public GameObject client;
 	}
 
 	// Public variable
 	public SpawnPoints[] SpawnPointsTab;
-	public GameObject[] clientsTab;
+	public ClientManager[] clientsTab;
 	public Sprite[] demandTab;
 	public float waitTime; 
 
@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		// UI Management
+		// Deactivate all progress bar
 		for (int i = 0; i < SpawnPointsTab.Length; i++) {
 			SpawnPointsTab [i].progress.gameObject.SetActive (false);
 		}
@@ -61,15 +61,58 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
+	// Active Client GameObject
+	public void ActiveClient(int index){
+
+		ClientManager _CM;
+
+		// Active UI of this Spawn Point
+		SpawnPointsTab[index].progress.gameObject.SetActive (true);
+
+		// Choose a client
+		SpawnPointsTab[index].client = clientsTab[Random.Range(0,clientsTab.Length)];
+		_CM = SpawnPointsTab [index].client;
+
+		// Set index to the client
+		_CM.index = index;
+
+		// Spawn Client
+		Instantiate(SpawnPointsTab[index].client,SpawnPointsTab[index].spawnPoint);
+
+		// Reset Slider value
+		SpawnPointsTab[index].progress.maxValue = 100f;
+		SpawnPointsTab[index].progress.value = SpawnPointsTab[index].progress.maxValue;
+
+		// Start Couroutine
+		StartCoroutine(ActiveProgressBar(index, 1f));
+	}
+
 	// Coroutine for each progress bar 
 	public IEnumerator ActiveProgressBar(int index, float waitTime)
 	{
 		ClientManager _CM;
-		_CM = SpawnPointsTab [index].client.GetComponent<ClientManager> ();
+        float _minRange, _maxRange, reduceTime;
 
-		while (true) {
+		_CM = SpawnPointsTab [index].client;
+        _maxRange = GameManager.instance.RatioLevel() + _CM.nbProgressPoint;
 
-			SpawnPointsTab[index].progress.value -= _CM.nbProgressPoint;
+        if (GameManager.instance.RatioLevel() - _CM.nbProgressPoint > 0.0F)
+        {
+            _minRange = GameManager.instance.RatioLevel() - _CM.nbProgressPoint;
+        }
+        else
+        {
+            _minRange = 0.0f;
+        }
+
+        reduceTime = Random.Range(_minRange, _maxRange);
+
+        while (true) {
+
+            if (GameManager.instance.gameState == GameManager.gameStates.Playing)
+            {
+			    SpawnPointsTab[index].progress.value -= reduceTime;
+            }
 
 			if (SpawnPointsTab[index].progress.value <= 0f) {
 				PlayerStats.instance.lifePoints--;
@@ -81,52 +124,28 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
-	// Active Client GameObject
-	public void ActiveClient(int index){
-
-		ClientManager _CM;
-
-		// Active UI of this Spawn Point
-		SpawnPointsTab[index].progress.gameObject.SetActive (true);
-
-		// Choose a client
-		SpawnPointsTab[index].client = clientsTab[Random.Range(0,clientsTab.Length)].gameObject;
-		_CM = SpawnPointsTab [index].client.GetComponent<ClientManager> ();
-
-		// Set index to the client
-		_CM.index = index;
-
-		// SpawnClient Client
-		Instantiate(SpawnPointsTab[index].client,SpawnPointsTab[index].spawnPoint.transform);
-
-		// Reset Slider value
-		SpawnPointsTab[index].progress.maxValue = 100f;
-		SpawnPointsTab[index].progress.value = SpawnPointsTab[index].progress.maxValue;
-
-		// Start Couroutine
-		StartCoroutine(ActiveProgressBar(index, 1f));
-	}
 
 	public void DeativateClient(int index){
 		// Destroy Client object spawned
-		for (int i = 0; i < SpawnPointsTab [index].spawnPoint.transform.childCount; i++) {
+		for (int i = 0; i < SpawnPointsTab [index].spawnPoint.childCount; i++) {
 			if (SpawnPointsTab [index].spawnPoint.transform.GetChild (i).tag == "Client") {
-				Destroy(SpawnPointsTab [index].spawnPoint.transform.GetChild (i).gameObject);
+				Destroy(SpawnPointsTab [index].spawnPoint.GetChild (i).gameObject);
 			}
 		}
-		// Deactive UI of this Spawn Point
-		StopCoroutine (ActiveProgressBar(index, 1f));
-		SpawnPointsTab[index].progress.gameObject.SetActive (false);
-		SpawnPointsTab [index].progress.value = SpawnPointsTab [index].progress.maxValue;
+
+        // Deactive UI of this Spawn Point
+        //SpawnPointsTab[index].progress.value = SpawnPointsTab[index].progress.maxValue;
+        StopCoroutine(ActiveProgressBar(index, 1f));
+        SpawnPointsTab[index].progress.gameObject.SetActive (false);
 		SpawnPointsTab [index].client = null;
-		SpawnPointsTab [index].demand.GetComponent<SpriteRenderer> ().sprite = null;
+		SpawnPointsTab [index].demand.sprite = null;
 
 	}
 
 	// Set Potion when client spawn
 	public void ClientPotion(int index, GameObject potion) {
 
-		SpriteRenderer _SR = SpawnPointsTab [index].demand.GetComponent<SpriteRenderer> ();
+		SpriteRenderer _SR = SpawnPointsTab [index].demand;
 
 		switch (potion.tag) {
 		case "Potion Agility":

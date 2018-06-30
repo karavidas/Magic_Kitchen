@@ -63,7 +63,7 @@ public class KitleManager : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (!isCooking)
+        if (!isCooking && GameManager.instance.gameState == GameManager.gameStates.Playing)
         {
             dragging = true;
             this.gameObject.GetComponent<SkeletonAnimation>().GetComponent<MeshRenderer>().sortingLayerName = "Draged";

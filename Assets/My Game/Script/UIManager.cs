@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour {
 	[Header("Main UI")]
 	public GameObject[] heartTab;
 	public GameObject grimoire;
+    public Canvas pause;
 	public Text goldText;
     public Image goldImage;
+
 
 	[Space]
 
@@ -25,12 +27,31 @@ public class UIManager : MonoBehaviour {
 		instance = this;
 	}
 
-	// Use this for initialization
-	public void ShowStartUI () {
+    private void Update()
+    {
+        if (pause != null)
+        {
+            if (GameManager.instance.gameState == GameManager.gameStates.Pause)
+            {
+                pause.gameObject.SetActive(true);
+            }
+            else
+            {
+                pause.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    // Use this for initialization
+    public void ShowStartUI () {
 		if (grimoire != null ) {
 			grimoire.gameObject.SetActive (false);
 		}
-		if (goldText != null ) {
+        if (pause != null)
+        {
+            pause.gameObject.SetActive(false);
+        }
+        if (goldText != null ) {
 			goldText.gameObject.SetActive (true);
 		}
         if (goldImage != null)

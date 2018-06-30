@@ -17,8 +17,8 @@ public class ClientManager : MonoBehaviour
 
     public clientsType clientType;
     public GameObject potion;
-    [Range(1, 5)]
-    public int nbProgressPoint;
+    [Range(0, 3)]
+    public float nbProgressPoint;
     public AudioClip[] sfxHappy;
     public AudioClip[] sfxSad;
     [HideInInspector]
@@ -47,8 +47,8 @@ public class ClientManager : MonoBehaviour
         if (potion.tag == potionGiven.tag)
         {
             PlayerStats.instance.Gold += 10;
-            Destroy(potionGiven);
             SpawnManager.instance.DeativateClient(index);
+            Destroy(potionGiven);
 
         }
         else
@@ -56,13 +56,19 @@ public class ClientManager : MonoBehaviour
             AngryAnimation();
             PlayerStats.instance.Gold -= 3;
         }
-        
+    }
+    
+    //Choose Potion
+    public void ChoosePotion()
+    {
+        potion = MainPotionManager.instance.PotionTab[Random.Range(0, MainPotionManager.instance.PotionTab.Length - 1)].potion.gameObject;
+        SpawnManager.instance.ClientPotion(index, potion);
     }
 
     IEnumerator PlaySound(){
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(10f, 50f));
+            yield return new WaitForSeconds(Random.Range(5f, 25f));
 
             // Play Happy sound
             if (SpawnManager.instance.SpawnPointsTab[index].progress.value > SpawnManager.instance.SpawnPointsTab[index].progress.maxValue/2)
@@ -77,16 +83,11 @@ public class ClientManager : MonoBehaviour
                 AngryAnimation();
             }
 
-            _AS.Play();
-
+            if (GameManager.instance.gameState == GameManager.gameStates.Playing)
+            {
+                _AS.Play();
+            }
         }
-    }
-
-    //Choose Potion
-    public void ChoosePotion()
-    {
-        potion = MainPotionManager.instance.PotionTab[Random.Range(0, MainPotionManager.instance.PotionTab.Length - 1)].potion.gameObject;
-        SpawnManager.instance.ClientPotion(index, potion);
     }
 
     public void AngryAnimation()
