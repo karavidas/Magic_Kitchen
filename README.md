@@ -7,9 +7,9 @@ It is a Management Point & Click game, where you need to prepare potions for cli
 
 You can play the game [here](https://mahjoub.itch.io/magic-kicthen)
 
-# Credits
+## Credits
 
-KIDAME (Game Artist)
+[KIDAME](https://www.artstation.com/kidame) (Game Artist)
 
 Elias. m. (Game Artist) 
 
